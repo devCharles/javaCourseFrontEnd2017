@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    <security-constraint>
+        <display-name>member area</display-name>
+        <web-resource-collection>
+            <web-resource-name>user name web service</web-resource-name> 
+            <description/>
+            <url-pattern>/resources/user</url-pattern>
+        </web-resource-collection> 
+        <web-resource-collection>
+            <web-resource-name>private html</web-resource-name>
+            <url-pattern>/private/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>like web service</web-resource-name>
+            <url-pattern>/resources/votes/like/*</url-pattern> 
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>dislike web service</web-resource-name>
+            <url-pattern>/resources/votes/dislike/*</url-pattern> 
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>associate</role-name>
+            <role-name>professional</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-role>
+        <description>A new user with "like" permission but not "dislike" permission</description>
+        <role-name>associate</role-name>
+    </security-role>
+    <security-role>
+        <description>A senior user with "like" and "dislike" permission.</description>
+        <role-name>professional</role-name>
+    </security-role>
+</web-app>
